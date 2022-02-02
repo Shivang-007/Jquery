@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <h2>paragraph 1</h2>
+    <div id="p1">
+    <p id="one">Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi, recusandae molestias temporibus saepe blanditiis
+        ab molestiae quidem quis repudiandae illo corporis odit voluptatem impedit nostrum dolorum omnis distinctio sint
+        esse.</p>
+    </div>
+    <br>
+    <h2>paragraph 2</h2>
+
+    <p class="para">shivang rathod . Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quae veritatis
+        exercitationem nam, commodi aspernatur, quod unde voluptate molestiae nemo ab debitis labore facilis sed
+        deleniti. Cumque amet vitae neque nesciunt!</p>
+    <button id="hide">hide</button>
+    <button id="show">show</button>
+    <button id="tog">Toggle</button>
+    <button id="slide">SlideToggle</button>
+    <button id="fade">fadeOut</button>
+    <button id="fade2">FadeToggle</button>
+    <button id="animate">Animate</button>
+    <button id="animateStop">AnimateStop</button>
+    <button id="clone">clone</button>
+    <button id="on">On Event(start event)</button>
+    <button id="off">Off Event(remove event)</button>
+
+
+
+
+
+
+
+</body>
+<script>
+    $(document).ready(function(){
+       $('#hide').click(function(){
+           $('p').hide();
+       })
+       $('#show').click(function(){
+           $('p').show();
+       })
+       $('#tog').click(function(){
+           $('p').toggle();
+       })
+       $('#slide').click(function(){
+           $('p').slideToggle();
+       })
+       $('#fade').click(function(){
+           $('p:first').fadeOut("slow");
+       })
+       $('#fade2').click(function(){
+           $('p').fadeToggle("slow");
+       })
+       $('#animate').click(function(){
+           $('p').animate({
+               width:'500px',
+               fontsize:'20px',
+               color:'green'
+           },4000);
+       })
+       $('#animateStop').click(function(){
+           $('p').stop();
+       })
+       $('#clone').click(function(){
+           $('p:first').clone().appendTo('.para');
+       })
+       $('#on').click(function(){
+       $('#p1').on({
+        
+           'click':function(){
+               $(this).css('background-color','pink');
+           },
+           'mouseover':function(){
+            $(this).css('background-color','lightblue');
+           },
+           'mouseleave':function(){
+            $(this).css('background-color','yellow');
+           }
+        
+
+       })
+    })     
+    $('#off').click(function(){  
+        $('#p1').off("mouseover mouseleave");
+    })    
+    })
+</script>
+
+</html>
