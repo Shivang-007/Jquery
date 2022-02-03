@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Document</title>
+    <style>
+        .container{
+            width: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container m-auto" >
+        <h1 class="text-center">JQuery Form validation</h1>
+        <form>
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Username</label>
+              <input type="text" class="form-control" id="username" placeholder="Enter Username here" autocomplete="off">
+              <h5 id="usercheck"></h5>
+            </div>
+            
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Password</label>
+                <input type="password" class="form-control" id="password" placeholder="Enter password here" autocomplete="off">
+                <h5 id="passcheck"></h5>
+            </div>
+              
+              <div class="form-group">
+                <label for="exampleFormControlInput1">Confirm Password</label>
+                <input type="password" class="form-control" id="conpass" placeholder="Confirm password" autocomplete="off">
+                <h5 id="conpasscheck"></h5>
+
+              </div>
+             
+              <button type="submit" class="btn btn-primary" id="submit">Submit</button>
+        </form>    
+    </div>
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function(){
+        var use_err=true;
+        var pass_err=true;
+        var conpass_err=true;
+        $('#usercheck').hide();
+        $('#passcheck').hide();
+        $('#conpasscheck').hide();
+        
+        $('#username').keyup(function(){
+            usecheck();
+        })
+        function usecheck(){
+            var useval=$('#username').val();
+            if(useval.length==''){
+                $('#usercheck').show();
+                $('#usercheck').html("*please enter the username");
+                $('#usercheck').focus();
+                $('#usercheck').css("color","red");
+                use_err=false;
+                return false;
+            }else{
+                $('#usercheck').hide();
+            }
+            if(useval.length<10){
+                $('#usercheck').show();
+                $('#usercheck').html("*please enter the username with minimum 10 character");
+                $('#usercheck').focus();
+                $('#usercheck').css("color","red");
+            }else{
+                $('#usercheck').hide();
+            }
+        }
+        $('#password').keyup(function(){
+            passcheck();
+        })
+        function passcheck(){
+            var passval=$('#password').val();
+            if(passval.length==''){
+                $('#passcheck').show();
+                $('#passcheck').html("*please enter the password");
+                $('#passcheck').focus();
+                $('#passcheck').css("color","red");
+                pass_err=false;
+                return false;
+            }else{
+                $('#passcheck').hide();
+            }
+            if(passval.length>10){
+                $('#passcheck').show();
+                $('#passcheck').html("*please enter the  correct password");
+                $('#passcheck').focus();
+                $('#passcheck').css("color","red");
+                var pass_err=false;
+                return false;
+
+            }else{
+                $('#passcheck').hide();
+            }
+        }
+        $('#conpass').keyup(function(){
+            conpasscheck();
+        })
+        function conpasscheck(){
+            var conpassval=$('#conpass').val();
+            var passval=$('#password').val();
+            if(conpassval.length==''){
+                $('#conpasscheck').show();
+                $('#conpasscheck').html("*please enter the password");
+                $('#conpasscheck').focus();
+                $('#conpasscheck').css("color","red");
+                conpass_err=false;
+                return false;
+            }else{
+                $('#conpasscheck').hide();
+            }
+            if(conpassval!=passval){
+                $('#conpasscheck').show();
+                $('#conpasscheck').html("*password is not matched");
+                $('#conpasscheck').focus();
+                $('#conpasscheck').css("color","red");
+                conpass_err=false;
+                return false;
+            }else{
+                $('#conpasscheck').hide();
+            }
+        }
+        $('#submit').click(function(){
+            use_err=true;
+            pass_err=true;
+           conpass_err=true;
+           usecheck(); 
+           passcheck();
+           conpasscheck();
+           if(( use_err==true) && (pass_err==true) && (conpass_err==true)){
+               return true;
+           }else{
+               return false;
+           }
+        })
+    });
+</script>
+</body>
+</html>
